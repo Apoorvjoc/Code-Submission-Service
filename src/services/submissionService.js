@@ -11,7 +11,7 @@ class SubmissionService {
     async addSubmission(submissionObj){
         const submission = await this.SubmissionRepo.createSubmission(submissionObj) // added to db
 
-        if(submission){
+        if(!submission){
             throw new SubmissionCreationError("Failed to create entry in DB.");
         }
         console.log("Successfully added submission"+submissionObj);
