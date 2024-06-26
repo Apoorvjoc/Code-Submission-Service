@@ -2,7 +2,7 @@ const { createSubmission } = require("../../../../controller/submissionControlle
 const { testController } = require("../../../../controller/testController");
 
 async function submissionRoute(fastify , option){
-    fastify.post("/ping" , createSubmission)
+    fastify.post("/" , createSubmission)
     fastify.get("/ping" , testController) //test
 }
 

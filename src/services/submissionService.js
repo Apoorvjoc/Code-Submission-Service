@@ -3,11 +3,12 @@ const submissionProducer = require('../producers/submissionQueueProducer')
 class SubmissionService {
     constructor(SubmissionRepo){
         //add dependency injection if needed
+        console.log("Submission repo " , SubmissionRepo);
         this.SubmissionRepo = SubmissionRepo;
     }
 
     async addSubmission(submissionObj){
-        const submission = this.SubmissionRepo.createSubmission(submissionObj) // added to db
+        const submission = await this.SubmissionRepo.createSubmission(submissionObj) // added to db
 
         if(!submission){
             //TODO : Error Handling
@@ -15,7 +16,7 @@ class SubmissionService {
         }
         console.log("Successfully added submission"+submissionObj);
         const response = await submissionProducer(submissionObj); // added to queue
-        return {queueResponse:response , submission};
+        return {queueResponse:response ,submissionObj};
     }
 }
 

@@ -5,8 +5,8 @@ async function testController(req , res){
 
 // TODO : add validation layer
 async function createSubmission(req , res){
-    const response = await this.submissionService.addSubmission(req.body) 
-    return res.status(201).json({
+    const response = await this.SubmissionService.addSubmission(req.body) 
+    return res.status(201).send({
         error:{},
         data: response,
         success: true,
